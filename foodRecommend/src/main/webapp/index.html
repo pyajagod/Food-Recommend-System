@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://m.motanku.com" />
+    <meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.motanku.com" />
+    <title>校园美食推荐系统</title>
+    <meta name="keywords" content="美食推荐" />
+    <meta name="description" content="吃货必备，猜你喜欢" />
+    <link rel="stylesheet" href="css/meishi.css" />
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <style type="text/css">
+        .searchActive{
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+    <div>
+        <ul  class="layui-nav" style="width:1300px;margin:10px auto auto auto;">
+            <div v-if="uid == null">
+                <li class="layui-nav-item"><a href="user/login.html">首页</a></li>
+                <li class="layui-nav-item"><a href="user/login.html">招牌美食</a></li>
+                <li class="layui-nav-item" style="margin-left: 70%"></li>
+                <li class="layui-nav-item" lay-unselect="">
+                    <a href="user/login.html">登录</a>
+                </li>
+            </div>
+            <div v-else>
+                <li class="layui-nav-item"><a href="index.html">首页</a></li>
+                <li class="layui-nav-item"><a href="foods.html">招牌美食</a></li>
+                <li class="layui-nav-item" style="margin-left: 70%"></li>
+                <li class="layui-nav-item" lay-unselect="">
+                    <a href="javascript:;"><img :src="avatar" class="layui-nav-img">{{username}}</a>
+                    <dl class="layui-nav-child">
+<!--                        <dd><a href="javascript:;">收藏菜单</a></dd>-->
+<!--                        <dd><a href="javascript:;">个人中心</a></dd>-->
+                        <dd><a @click="destroyCookie" href="index.html">告辞</a></dd>
+                    </dl>
+                </li>
+            </div>
+
+        </ul>
+    </div>
+    <div style="width:1300px;margin:2% auto 2% auto;">
+        <div class="layui-input-inline">
+            <input type="text" id="fname" placeholder="请输入美食名。如：“麻婆豆腐” 或 “佛跳墙”" class="layui-input"
+                   style="width: 1200px;font-size: 18px;" onkeypress="EnterPress(event)" onkeydown="EnterPress()"
+                    v-model="searchText" v-on:keyup="showName(searchText)"/>
+        </div>
+
+        <input type="button"  class="layui-btn" style="margin-left: 2%" @click="searchFood()" value="搜索"/>
+        <font id="searchType" style="display: none">美食名</font>
+        <div id="parentRelationSearch" v-for="(food, dIndex) in foodList"
+        style="position: relative; top: 0px;left: 474px;height: auto; width: 1200px
+        ;background-color: #FFFFFF;z-index: 99">
+            <div class="relationSearch" v-on:click="putVal(food.name)"
+            v-on:mouseEnter="mouseEnter($event)" v-on:mouseleave="mouseLeave($event)"
+            style="position: relative;top: 0px;left: 0px; width: 100%; height: 35px;border-bottom: 1px solid #e8e8e8;
+             line-height: 35px">
+                    <font size="2" style="position: absolute;left: 5px">{{food.name}}</font>
+                    <font size="2" style="position: absolute;left: 92%">{{food.genres}}</font>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="main">
+        <div class="layui-collapse" lay-accordion="" lay-filter="test">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">最受欢迎榜</h2>
+                <div class="layui-colla-content layui-show">
+                    <div id="hotcontent"><script type="text/javascript">list();</script>
+                        <div class="l">
+
+                            <div v-for="rrf in RecentlyRateFoods">
+                                <div v-if="uid == null">
+                                    <div v-if="rrf.fid < 5">
+                                        <div class="item">
+                                            <div class="image">
+                                                <a href="user/login.html">
+                                                    <img :src="rrf.avatar"
+                                                         :alt="rrf.name" width="120" height="150" /></a></div>
+                                            <dl>
+                                                <dt><span>
+                                            </span><a href="user/login.html">
+                                                    {{rrf.name}}
+                                                </a></dt>
+                                                <dd>
+                                                    　　{{rrf.describe}}
+                                                </dd>
+                                            </dl>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <div v-if="rrf.fid < 5">
+                                        <div class="item">
+                                            <div class="image">
+                                                <a :href="'yumFood.html?fid=' + rrf.fid">
+                                                    <img :src="rrf.avatar"
+                                                         :alt="rrf.name" width="120" height="150" /></a></div>
+                                            <dl>
+                                                <dt><span>
+                                            </span><a :href="'yumFood.html?fid=' + rrf.fid">
+                                                    {{rrf.name}}
+                                                </a></dt>
+                                                <dd>
+                                                    　　{{rrf.describe}}
+                                                </dd>
+                                            </dl>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="r">
+                            <h2>近期最热top10</h2>
+                            <ul>
+                                <div v-if="uid == null">
+                                    <div v-for="rrf in RecentlyRateFoods">
+                                        <li><span class="s1">[{{rrf.genres}}]</span><span
+                                                class="s2"><a href="user/login.html">{{rrf.name}}</a></span><span
+                                                class="s5">评论量:{{rrf.count}}</span></li>
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <div v-for="rrf in RecentlyRateFoods">
+                                        <li><span class="s1">[{{rrf.genres}}]</span><span
+                                                class="s2"><a :href="'yumFood.html?fid=' + rrf.fid">{{rrf.name}}</a></span><span
+                                                class="s5">评论量:{{rrf.count}}</span></li>
+                                    </div>
+                                </div>
+
+
+
+                            </ul>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">猜你喜欢</h2>
+                <div class="layui-colla-content">
+                    <div id="condent" style="margin-left: 5%">
+                        <div id="hotcontent"><div class="ll">
+                            <div v-for="rec in userRecs">
+                                <div v-if="uid == null">
+                                    <div class="item">
+                                        <div class="image"><a href="user/login.html"><img :src="rec.avatar" :alt="rec.name"  width="120" height="150" /></a></div>
+                                        <dl>
+                                            <dt><a href="user/login.html">{{rec.name}}</a></dt>
+                                            <dd>{{rec.describe}}</dd>
+                                        </dl>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <div class="item">
+                                        <div class="image"><a :href="'yumFood.html?fid=' + rec.fid"><img :src="rec.avatar" :alt="rec.name"  width="120" height="150" /></a></div>
+                                        <dl>
+                                            <dt><a :href="'yumFood.html?fid=' + rec.fid">{{rec.name}}</a></dt>
+                                            <dd> {{rec.describe}}</dd>
+                                        </dl>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="dahengfu"><script type="text/javascript">common_mid();</script></div>
+
+                    </div>
+                </div>
+            </div>
+<!--            <div class="layui-colla-item">-->
+<!--                <h2 class="layui-colla-title">食堂精选</h2>-->
+<!--            </div>-->
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">历史评论</h2>
+                <div class="layui-colla-content">
+                    <div id="hotcontent"><script type="text/javascript">list();</script>
+                            <h2>历史最热top10</h2>
+                            <ul>
+                                <div v-if="uid == null">
+                                    <div v-for="hrf in HistoryRateFoods">
+                                        <li><span class="s1">[{{hrf.genres}}]</span><span
+                                                class="s2"><a href="user/login.html">{{hrf.name}}</a></span><span
+                                                class="s5">评论量:{{hrf.count}}</span></li>
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <div v-for="hrf in HistoryRateFoods">
+                                        <li><span class="s1">[{{hrf.genres}}]</span><span
+                                                class="s2"><a :href="'yumFood.html?fid=' + hrf.fid">{{hrf.name}}</a></span><span
+                                                class="s5">评论量:{{hrf.count}}</span></li>
+                                    </div>
+                                </div>
+
+
+
+                            </ul>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="footer">
+        <div class="footer_cont">
+            <p>
+                Copyright © 2020
+                校园美食推荐系统
+            </p>
+            <p><a href="http://beian.miitbeian.gov.cn/">苏ICP备19059606号.</a></p>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" src="js/wap.js"></script>
+    <script type="text/javascript" src="js/mtk.js"></script>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/vue-resource.min.js"></script>
+    <script type="text/javascript" src="js/axios.min.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script>
+        layui.use(['layer','element'], function(){
+            var element = layui.layer;
+            var layer = layui.element;
+
+            //监听折叠
+            element.on('collapse(test)', function(data){
+                // layer.msg('展开状态：'+ data.show);
+            });
+        });
+        layui.use('element', function(){
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
+    </script>
+
+    <script>
+        function getCookie(cname)
+        {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i < ca.length; i++)
+            {
+                var c = ca[i].trim();
+                if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+            }
+            return "";
+        }
+        // 清除cookie
+        function clearCookie(name) {
+            setCookie(name, "", -1);
+        }
+        var vm = new Vue({
+            el: '#wrapper',
+            data: {
+                uid: null,
+                username: null,
+                avatar: null,
+                HistoryRateFoods: null,
+                RecentlyRateFoods: null,
+                userRecs: null,
+                searchText: "",
+                foodList: []
+            },
+            mounted: function (){
+                this.showName();
+                this.putVal();
+                this.mouseEnter();
+                this.mouseLeave();
+            },
+            created: function(){
+                this.checkCookie();
+                this.getHistroyFood();
+                this.getRecentlyFood();
+                this.getUserRecs();
+            },
+            methods: {
+                putVal: function (val){
+                    $("#fname").val(val);
+                    $(".relationSearch").hide();
+                    document.getElementById("fname").focus();
+                },
+                showName: function(key){
+                    console.log(key);
+                    if (key.length != 0){
+                        var searchType = document.getElementById("searchType").innerText;
+                        if (searchType == "全部" || searchType == "美食名"){
+                            $(".relationSearch").show();
+                            var _this = this;
+                            this.$http.get("/es/show?key=" + key).then(function (jsonResult) {
+                                _this.foodList = (jsonResult.body);
+                            });
+                        }
+                    }else {
+                        $(".relationSearch").hide();
+                    }
+                },
+                mouseEnter: function($event){
+                    $event.currentTarget.className = "relationSearch searchActive";
+                },
+                mouseLeave: function($event){
+                    $event.currentTarget.className = "relationSearch";
+                },
+                checkCookie:function () {
+                    var cookie = document.cookie;
+                    var i = getCookie("fuid");
+                    var j = getCookie("fusername");
+                    var k = getCookie("favatar");
+                    if (i != ""){
+                        this.uid = i;
+                        this.username = j;
+                        this.avatar = k;
+                    }else {
+                        // alert("您请先登录......");
+
+                    }
+                },
+                destroyCookie : function () {
+                    clearCookie("fuid");
+                    clearCookie("fusername");
+                    clearCookie("favatar");
+                },
+                getHistroyFood : function () {
+                    var that = this;
+                    axios.post('/recommend/historyFood')
+                        .then(function (response) {
+                            that.HistoryRateFoods = response.data
+                        }).catch(function () {
+                        // alert("error");
+                    })
+                },
+                getRecentlyFood : function () {
+                    var that = this;
+                    axios.post('/recommend/recentlyFood')
+                        .then(function (response) {
+                            that.RecentlyRateFoods = response.data
+                            // alert(that.RecentlyRateFoods);
+                        }).catch(function () {
+                        alert("error");
+                    })
+                },
+                getUserRecs : function () {
+                    var that = this;
+                    axios.get('/recommend/favorite?id='+that.uid)
+                        .then(function (response) {
+                            // alert(response.data)
+                            that.userRecs = response.data
+                        }).catch(function () {
+                        // alert("error");
+                    })
+                },
+                searchFood:function () {
+                    var fd = document.getElementById("fname").value;
+                    window.location.href="search.html?fd="+encodeURI(encodeURI(fd));
+                }
+            }
+        })
+    </script>
+</body>
+</html>

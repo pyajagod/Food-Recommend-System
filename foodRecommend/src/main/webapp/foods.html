@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><meta http-equiv="Cache-Control" content="no-transform" />
+    <title>校园美食推荐系统</title>
+    <meta name="keywords" content="美食推荐" />
+    <meta name="description" content="吃货必备，猜你喜欢" />
+    <link rel="stylesheet" href="css/meishi.css" />
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <style type="text/css">
+        .searchActive{
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <div>
+        <ul  class="layui-nav" style="width:1300px;margin:10px auto auto auto;">
+            <div v-if="uid == null">
+                <li class="layui-nav-item"><a href="user/login.html">首页</a></li>
+                <li class="layui-nav-item"><a href="user/login.html">招牌美食</a></li>
+                <li class="layui-nav-item" style="margin-left: 70%"></li>
+                <li class="layui-nav-item" lay-unselect="">
+                    <a href="user/login.html">登录</a>
+                </li>
+            </div>
+            <div v-else>
+                <li class="layui-nav-item"><a href="index.html">首页</a></li>
+                <li class="layui-nav-item"><a href="foods.html">招牌美食</a></li>
+                <li class="layui-nav-item" style="margin-left: 70%"></li>
+                <li class="layui-nav-item" lay-unselect="">
+                    <a href="javascript:;"><img :src="avatar" class="layui-nav-img">{{username}}</a>
+                    <dl class="layui-nav-child">
+<!--                        <dd><a href="javascript:;">收藏菜单</a></dd>-->
+<!--                        <dd><a href="javascript:;">个人中心</a></dd>-->
+                        <dd><dd><a @click="destroyCookie" href="index.html">告辞</a></dd>告辞</a></dd>
+                    </dl>
+                </li>
+            </div>
+
+        </ul>
+    </div>
+    <div style="width:1300px;margin:2% auto 2% auto;">
+        <div class="layui-input-inline">
+            <input type="text" id="fname" placeholder="请输入美食名" class="layui-input" style="width: 1200px"/>
+        </div>
+
+        <input type="button"  class="layui-btn" style="margin-left: 2%" @click="searchFood()" value="搜索"/>
+    </div>
+    <div id="main">
+        <div class="layui-collapse" lay-accordion="">
+            <div class="layui-colla-item" id="n1">
+                <h2 class="layui-colla-title">南食堂一楼</h2>
+                <div class="layui-colla-content layui-show">
+                    <div id="condent">
+                        <div id="hotcontent"><div class="ll">
+
+                            <div v-for="food in N1">
+                                <div class="item">
+                                    <div class="image"><a :href="'yumFood.html?fid=' + food.fid"><img :src="food.avatar" :alt="{{food.name}}"  width="120" height="150" /></a></div>
+                                    <dl>
+                                        <dt><a :href="'yumFood.html?fid=' + food.fid">{{food.name}}</a></dt>
+                                        <dd>{{food.describe}}</dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="dahengfu"><script type="text/javascript">common_mid();</script></div>
+                    </div>
+            </div>
+            </div>
+            <div class="layui-colla-item" id="n2">
+                <h2 class="layui-colla-title">南食堂二楼</h2>
+                <div class="layui-colla-content">
+                    <div id="condent">
+                        <div id="hotcontent"><div class="ll">
+
+                            <div v-for="food in N2">
+                                <div class="item">
+                                    <div class="image"><a :href="'yumFood.html?fid=' + food.fid"><img :src="food.avatar" alt="food.name"  width="120" height="150" /></a></div>
+                                    <dl>
+                                        <dt><a :href="'yumFood.html?fid=' + food.fid">{{food.name}}</a></dt>
+                                        <dd>{{food.describe}}</dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        </div>
+
+                        <div class="dahengfu"><script type="text/javascript">common_mid();</script></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-colla-item" id="n3">
+                <h2 class="layui-colla-title">南食堂三楼</h2>
+                <div class="layui-colla-content">
+                    <div id="condent">
+                        <div id="hotcontent"><div class="ll">
+
+                            <div v-for="food in N3">
+                                <div class="item">
+                                    <div class="image"><a :href="'yumFood.html?fid=' + food.fid"><img :src="food.avatar" alt="food.name"  width="120" height="150" /></a></div>
+                                    <dl>
+                                        <dt><a :href="'yumFood.html?fid=' + food.fid">{{food.name}}</a></dt>
+                                        <dd>{{food.describe}}</dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+
+                        <div class="dahengfu"><script type="text/javascript">common_mid();</script></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-colla-item" id="b1">
+                <h2 class="layui-colla-title">北食堂一楼</h2>
+                <div class="layui-colla-content">
+                    <div id="condent">
+                        <div id="hotcontent"><div class="ll">
+
+                            <div v-for="food in B1">
+                                <div class="item">
+                                    <div class="image"><a :href="'yumFood.html?fid=' + food.fid"><img :src="food.avatar" alt="food.name"  width="120" height="150" /></a></div>
+                                    <dl>
+                                        <dt><a :href="'yumFood.html?fid=' + food.fid">{{food.name}}</a></dt>
+                                        <dd>{{food.describe}}</dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+
+                        <div class="dahengfu"><script type="text/javascript">common_mid();</script></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-colla-item" id="b2">
+                <h2 class="layui-colla-title">北食堂二楼</h2>
+                <div class="layui-colla-content">
+                    <div id="condent">
+                        <div id="hotcontent"><div class="ll">
+
+                            <div v-for="food in B2">
+                                <div class="item">
+                                    <div class="image"><a :href="'yumFood.html?fid=' + food.fid"><img :src="food.avatar" alt="food.name"  width="120" height="150" /></a></div>
+                                    <dl>
+                                        <dt><a :href="'yumFood.html?fid=' + food.fid">{{food.name}}</a></dt>
+                                        <dd>{{food.describe}}</dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+
+                        <div class="dahengfu"><script type="text/javascript">common_mid();</script></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="layui-colla-item" id="b3">
+                <h2 class="layui-colla-title">北食堂三楼</h2>
+                <div class="layui-colla-content">
+                    <div id="condent">
+                        <div id="hotcontent"><div class="ll">
+
+                            <div v-for="food in B3">
+                                <div class="item">
+                                    <div class="image"><a :href="'yumFood.html?fid=' + food.fid"><img :src="food.avatar" alt="food.name"  width="120" height="150" /></a></div>
+                                    <dl>
+                                        <dt><a :href="'yumFood.html?fid=' + food.fid">{{food.name}}</a></dt>
+                                        <dd>{{food.describe}}</dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+
+                        <div class="dahengfu"><script type="text/javascript">common_mid();</script></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer">
+        <div class="footer_cont">
+            <p>
+                Copyright © 2020
+                校园美食推荐系统
+            </p>
+            <p><a href="http://beian.miitbeian.gov.cn/">苏ICP备19059606号.</a></p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/wap.js"></script>
+    <script type="text/javascript" src="js/mtk.js"></script>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/axios.min.js"></script>
+    <script type="text/javascript" src="js/vue-resource.min.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script>
+        layui.use(['element', 'layer'], function(){
+            var element = layui.element;
+            var layer = layui.layer;
+
+            //监听折叠
+            element.on('collapse(test)', function(data){
+                layer.msg('展开状态：'+ data.show);
+            });
+        });
+        layui.use('element', function(){
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            //监听导航点击
+            element.on('nav(demo)', function(elem){
+                //console.log(elem)
+                layer.msg(elem.text());
+            });
+        });
+    </script>
+    <script>
+        function getCookie(cname)
+        {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i < ca.length; i++)
+            {
+                var c = ca[i].trim();
+                if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+            }
+            return "";
+        }
+        var vm = new Vue({
+            el: '#wrapper',
+            data:{
+                uid: null,
+                username: null,
+                avatar: null,
+                N1: null,
+                N2: null,
+                N3: null,
+                B1: null,
+                B2: null,
+                B3: null,
+            },
+            created:function(){
+                this.checkCookie();
+                this.getN1();
+                this.getN2();
+                this.getN3();
+                this.getB1();
+                this.getB2();
+                this.getB3();
+            },
+            methods:{
+                checkCookie:function () {
+                    var cookie = document.cookie;
+                    var i = getCookie("fuid");
+                    var j = getCookie("fusername");
+                    var k = getCookie("favatar");
+                    if (i != ""){
+                        this.uid = i;
+                        this.username = j;
+                        this.avatar = k;
+                    }else {
+                        alert(this.uid);
+
+                    }
+                },
+                destroyCookie : function () {
+                    clearCookie("fuid");
+                    clearCookie("fusername");
+                    clearCookie("favatar");
+                },
+                getN1: function () {
+                    var that = this;
+                    axios.post('/foods/showByc?canteen=n1')
+                    .then(function (response) {
+                        that.N1 = response.data
+                    }).catch(function () {
+                        alert("error");
+                    })
+                },
+                getN2: function () {
+                    var that = this;
+                    axios.post('/foods/showByc?canteen=n2')
+                        .then(function (response) {
+                            that.N2 = response.data
+                        }).catch(function () {
+                        alert("error");
+                    })
+                },
+                getN3: function () {
+                    var that = this;
+                    axios.post('/foods/showByc?canteen=n3')
+                        .then(function (response) {
+                            that.N3 = response.data
+                        }).catch(function () {
+                        alert("error");
+                    })
+                },
+                getB1: function () {
+                    var that = this;
+                    axios.post('/foods/showByc?canteen=b1')
+                        .then(function (response) {
+                            that.B1 = response.data
+                        }).catch(function () {
+                        alert("error");
+                    })
+                },
+                getB2: function () {
+                    var that = this;
+                    axios.post('/foods/showByc?canteen=b2')
+                        .then(function (response) {
+                            that.B2 = response.data
+                        }).catch(function () {
+                        alert("error");
+                    })
+                },
+                getB3: function () {
+                    var that = this;
+                    axios.post('/foods/showByc?canteen=b3')
+                        .then(function (response) {
+                            that.B3 = response.data
+                        }).catch(function () {
+                        alert("error");
+                    })
+                },
+                searchFood:function () {
+                    var fd = document.getElementById("fname").value;
+                    window.location.href="search.html?fd="+encodeURI(encodeURI(fd));
+                }
+            }
+        }) ;
+    </script>
+</div>
+</body>
+</html>

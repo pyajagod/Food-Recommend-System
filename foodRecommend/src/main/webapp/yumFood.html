@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>校园美食推荐系统</title>
+        <link rel="stylesheet" type="text/css" href="css/meishi2.css"/>
+        <link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+        <style type="text/css">
+            .searchActive{
+                background-color: #e8e8e8;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="wrapper">
+            <div>
+                <ul  class="layui-nav" style="width:1300px;margin:10px auto auto auto;">
+                    <div v-if="uid == null">
+                        <li class="layui-nav-item"><a href="user/login.html">首页</a></li>
+                        <li class="layui-nav-item"><a href="user/login.html">招牌美食</a></li>
+                        <li class="layui-nav-item" style="margin-left: 70%"></li>
+                        <li class="layui-nav-item" lay-unselect="">
+                            <a href="user/login.html">登录</a>
+                        </li>
+                    </div>
+                    <div v-else>
+                        <li class="layui-nav-item"><a href="index.html">首页</a></li>
+                        <li class="layui-nav-item"><a href="foods.html">招牌美食</a></li>
+                        <li class="layui-nav-item" style="margin-left: 70%"></li>
+                        <li class="layui-nav-item" lay-unselect="">
+                            <a href="javascript:;"><img :src="avatar" class="layui-nav-img">{{username}}</a>
+                            <dl class="layui-nav-child">
+<!--                                <dd><a href="javascript:;">收藏菜单</a></dd>-->
+<!--                                <dd><a href="javascript:;">个人中心</a></dd>-->
+                                <dd><dd><a @click="destroyCookie" href="index.html">告辞</a></dd>告辞</a></dd>
+                            </dl>
+                        </li>
+                    </div>
+
+                </ul>
+            </div>
+            <div style="width:1300px;margin:2% auto 2% auto;">
+                <div class="layui-input-inline">
+                    <input type="text" id="fname" placeholder="请输入美食名" class="layui-input" style="width: 1200px"/>
+                </div>
+
+                <input type="button"  class="layui-btn" style="margin-left: 2%" @click="searchFood()" value="搜索"/>
+            </div>
+
+            <script type="text/javascript">list_top();</script>
+
+            <div class="box_con">
+                <div id="maininfo">
+                    <div id="info">
+                        <input type="text" id="fidf" style="display: none" :value="food.fid"/>
+                        <h1>{{food.name}}</h1>
+                        <p>分类: {{food.genres}}</p>
+                        <p>所在食堂: {{food.canteen}}</p>
+                        <p>价格: {{food.price}}</p>
+                        <p>点击量: {{food.checked}}</p>
+                    </div>
+                    <div id="intro">
+
+                        <p>    {{food.describe}}
+                        </p>
+                    </div>
+
+                </div>
+                <div id="sidebar">
+                    <div id="fmimg"><img :alt="food.name" :src="food.avatar" width="120" height="150" /><span class="b"></span></div>
+                </div>
+            </div>
+
+
+            <div class="dahengfu"><script type="text/javascript">list_mid();</script></div>
+
+            </div>
+        <div style="margin-left: 70%">
+
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <legend>美食评分</legend>
+            </fieldset>
+
+            <div id="test3"></div>`
+        </div>
+        <div style="margin-left: 6%">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                <legend>根据您的口味，向您推荐</legend>
+            </fieldset>
+            <div id="condent" style="margin-left: 5%">
+                <div id="hotcontent"><div class="ll">
+
+                    <div class="item">
+                        <div class="image"><a href="yumFood.html"><img src="http://www.xbiquge.la/files/article/image/0/69/69s.jpg" alt="帝霸"  width="120" height="150" /></a></div>
+                        <dl>
+                            <dt><a href="yumFood.html">帝霸</a></dt>
+                            <dd>    千万年前，李七夜栽下一株翠竹。
+                                八百万年前，李七夜养了一条鲤鱼。
+                                五百万年前，李七夜收养一个小女孩。
+                                …………………………
+                                今天，...</dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="image"><a href=""><img src="http://www.xbiquge.la/files/article/image/0/951/951s.jpg" alt="伏天氏"  width="120" height="150" /></a></div>
+                        <dl>
+                            <dt><a href="">伏天氏</a></dt>
+                            <dd>    东方神州，有人皇立道统，有圣贤宗门传道，有诸侯雄踞一方王国，诸强林立，神州动乱千万载，执此之时，一代天骄叶青帝及东凰大帝横空出世，斩人皇，驭圣贤，诸侯臣服，东方神...</dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="image"><a href=""><img src="http://www.xbiquge.la/files/article/image/29/29056/29056s.jpg" alt="仙武帝尊"  width="120" height="150" /></a></div>
+                        <dl>
+                            <dt><a href="">仙武帝尊</a></dt>
+                            <dd>    九千年前，仙武帝尊率领百万神将打入太古洪荒，却无一人归来，只有一缕真火遗留世间。    九千年后，门派废徒叶辰，被赶出宗门，无以为家，机缘巧合之下偶得真火，再踏仙...</dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="image"><a href=""><img src="http://www.xbiquge.la/files/article/image/7/7931/7931s.jpg" alt="终极斗罗"  width="120" height="150" /></a></div>
+                        <dl>
+                            <dt><a href="">终极斗罗</a></dt>
+                            <dd>    一万年后，冰化了。斗罗联邦科考队在极北之地科考时发现了一个有着金银双色花纹的蛋，用仪器探察之后，发现里面居然有生命体征，赶忙将其带回研究所进行孵化。    蛋孵化...</dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="image"><a href=""><img src="http://www.xbiquge.la/files/article/image/26/26874/26874s.jpg" alt="沧元图"  width="120" height="150" /></a></div>
+                        <dl>
+                            <dt><a href="">沧元图</a></dt>
+                            <dd>    我叫孟川，今年十五岁，是东宁府    “镜湖道院”的当代大师兄。</dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="item">
+                        <div class="image"><a href=""><img src="http://www.xbiquge.la/files/article/image/10/10512/10512s.jpg" alt="人皇纪"  width="120" height="150" /></a></div>
+                        <dl>
+                            <dt><span>皇甫奇</span><a href="http://www.xbiquge.la/10/10512/">人皇纪</a></dt>
+                            <dd>    javascript:share({content:&#039;　　我不能把这个世界，让给我所鄙视的人！    所以，王冲踩着枯骨血海，踏上人皇宝座，挽狂澜于既倒...</dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+
+                </div>
+                </div>
+
+                <div class="dahengfu"><script type="text/javascript">common_mid();</script></div>
+
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="footer_cont">
+                <p>
+                    Copyright © 2020
+                    校园美食推荐系统
+                </p>
+                <p><a href="http://beian.miitbeian.gov.cn/">苏ICP备19059606号.</a></p>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/wap.js"></script>
+        <script type="text/javascript" src="js/mtk.js"></script>
+        <script type="text/javascript" src="layui/layui.js"></script>
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/axios.min.js"></script>
+        <script type="text/javascript" src="js/vue-resource.min.js"></script>
+        <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+        <script>
+            function GetRequest() {
+                var url = location.search;
+                if (url.indexOf("?") != -1) {
+                    var str = url.substr(1);
+                    strs = str.split("=");
+                    return strs[1];
+                }
+            }
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i < ca.length; i++)
+                {
+                    var c = ca[i].trim();
+                    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+                }
+                return "";
+            }
+            layui.use(['element', 'layer'], function(){
+                var element = layui.element;
+                var layer = layui.layer;
+
+                //监听折叠
+                // element.on('collapse(test)', function(data){
+                //     layer.msg('展开状态：'+ data.show);
+                // });
+            });
+            layui.use('element', function(){
+                var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+                //监听导航点击
+                element.on('nav(demo)', function(elem){
+                    //console.log(elem)
+                    layer.msg(elem.text());
+                });
+            });
+            layui.use(['rate'], function(){
+                var rate = layui.rate;
+
+
+                //半星效果
+                rate.render({
+                    elem: '#test3'
+                    ,value: 0 //初始值
+                    ,half: true //开启半星
+                    ,text: true
+                    ,setText: function(value){
+                        this.span.text("您的评分为：" + value + "分");
+                    }
+                    ,choose: function(value){
+                        var fid = document.getElementById("fidf").value;
+                        var uid = getCookie("fuid");
+                        $.ajax({
+                            type: 'post'
+                            ,url: '/recommend/rate'
+                            ,dataType: 'json'
+                            ,data: {
+                                score: value,
+                                fid: fid,
+                                uid: uid
+                            }
+                            ,success: function (result) {
+                                // alert("success");
+                            },
+                            error : function (e) {
+                                console.log(e.state);
+                                console.log(e.responseText)
+                            }
+                        });
+                }
+                })
+
+            });
+        </script>
+        <script type="text/javascript">
+            var vm = new Vue({
+                el: '#wrapper',
+                data: {
+                    uid: null,
+                    username: null,
+                    avatar: null,
+                    food: null
+                },
+                created: function(){
+                    this.checkCookie();
+                    this.getFoods();
+                },
+                methods: {
+                    checkCookie:function () {
+                        var cookie = document.cookie;
+                        var i = getCookie("fuid");
+                        var j = getCookie("fusername");
+                        var k = getCookie("favatar");
+                        if (i != ""){
+                            this.uid = i;
+                            this.username = j;
+                            this.avatar = k;
+                        }else {
+                            alert(this.uid);
+
+                        }
+                    },
+                    destroyCookie : function () {
+                        clearCookie("fuid");
+                        clearCookie("fusername");
+                        clearCookie("favatar");
+                    },
+                    getFoods:function () {
+                        var that = this;
+                        axios.get('/foods/showOne',{
+                            params:{
+                                fid: GetRequest(),
+                                uid: getCookie("fuid")
+                            }
+                        })
+                            .then(function (response) {
+                                that.food = response.data
+                            }).catch(function () {
+                            alert("error");
+                        })
+                    },
+                    searchFood:function () {
+                        var fd = document.getElementById("fname").value;
+                        window.location.href="search.html?fd="+encodeURI(encodeURI(fd));
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>

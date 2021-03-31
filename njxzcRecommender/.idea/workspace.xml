@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f630a29d-b181-4cbd-bff2-17e41834b782" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FindBugs-IDEA-Workspace">
+    <toolWindowGroupBy>BugRank</toolWindowGroupBy>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\code\mvn" />
+        <option name="mavenHome" value="D:/environment/maven/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="D:\environment\maven\apache-maven-3.5.4\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1biYmWQhbVc37bcmMfWeZOYK6FI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/foodrecommender/DataLoad/src/main/scala" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\project\njxzcRecommender\foodrecommender\DataLoad\src\main\scala" />
+      <recent name="D:\code\project\njxzcRecommender\foodrecommender\DataLoad\src\main\resources" />
+      <recent name="D:\code\project\njxzcRecommender\foodrecommender\OfflineRecommender\src\main\scala" />
+      <recent name="D:\code\project\njxzcRecommender\foodrecommender\OfflineRecommender\src\main\resources" />
+      <recent name="D:\code\project\njxzcRecommender\foodrecommender\OnlineRecommender\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\code\project\njxzcRecommender\foodrecommender\DataLoad\src\main\resources" />
+      <recent name="D:\code\project\njxzcRecommender\foodrecommender\OnlineRecommender\src\main\scala" />
+      <recent name="D:\code\project\njxzcRecommender\foodrecommender\StaticsRecommender\src\main\scala" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.OnlineRecommender">
+    <configuration name="DataLoad" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="DataLoad" />
+      <module name="DataLoad" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OfflineRecommender" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="OfflineRecommender" />
+      <module name="OfflineRecommender" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OnlineRecommender" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="OnlineRecommender" />
+      <module name="OnlineRecommender" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StaticsRecommender" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="StaticsRecommender" />
+      <module name="StaticsRecommender" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.OnlineRecommender" />
+        <item itemvalue="Application.StaticsRecommender" />
+        <item itemvalue="Application.DataLoad" />
+        <item itemvalue="Application.OfflineRecommender" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f630a29d-b181-4cbd-bff2-17e41834b782" name="Default Changelist" comment="" />
+      <created>1589116540676</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589116540676</updated>
+      <workItem from="1589116544275" duration="4305000" />
+      <workItem from="1589180543094" duration="17990000" />
+      <workItem from="1589508429063" duration="103000" />
+      <workItem from="1589508566516" duration="144000" />
+      <workItem from="1589509857268" duration="433000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="569" y="346" width="398" height="173" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog" timestamp="1589118381733">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="569" y="346" width="398" height="173" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1536.864@0.0.1536.864" timestamp="1589118381733" />
+    <state x="993" y="219" key="FileChooserDialogImpl" timestamp="1589117849292">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="993" y="219" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1589117849292" />
+    <state width="1342" height="374" key="GridCell.Tab.0.bottom" timestamp="1589203999949">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1342" height="374" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1589203999949" />
+    <state width="1342" height="374" key="GridCell.Tab.0.center" timestamp="1589203999949">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1342" height="374" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1589203999949" />
+    <state width="1342" height="374" key="GridCell.Tab.0.left" timestamp="1589203999949">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1342" height="374" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1589203999949" />
+    <state width="1342" height="374" key="GridCell.Tab.0.right" timestamp="1589203999949">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1342" height="374" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1589203999949" />
+    <state x="316" y="92" key="SettingsEditor" timestamp="1589508629416">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="316" y="92" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1589508629416" />
+    <state x="517" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1589508570054">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="517" y="256" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1589508570054" />
+    <state x="356" y="127" key="new project wizard" timestamp="1589117401775">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="356" y="127" key="new project wizard/0.0.1536.864@0.0.1536.864" timestamp="1589117401775" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/foodrecommender/StaticsRecommender/src/main/scala/StaticsRecommender.scala</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

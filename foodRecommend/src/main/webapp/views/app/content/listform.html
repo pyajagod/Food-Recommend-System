@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>美食管理 iframe 框</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <script src="../../../layuiadmin/modules/contlist.js"></script>
+</head>
+<body>
+
+  <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">美食名</label>
+      <div class="layui-input-inline">
+        <input type="text" name="name" lay-verify="required" placeholder="请输入美食名" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">价格</label>
+      <div class="layui-input-inline">
+        <input type="text" name="price" lay-verify="required" placeholder="请输入价格" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">美食图片</label>
+      <div class="layui-input-inline">
+        <input type="text" id="portrait" name="avatar" lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
+      </div>
+      <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">美食描述</label>
+      <div class="layui-input-inline">
+        <textarea name="describe" lay-verify="required" style="width: 400px; height: 150px;" autocomplete="off" class="layui-textarea"></textarea>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">所在食堂</label>
+      <div class="layui-input-inline">
+        <select name="canteen" lay-verify="required">
+          <option value="">请选择标签</option>
+          <option value="南食堂一楼">南食堂一楼</option>
+          <option value="南食堂二楼">南食堂二楼</option>
+          <option value="南食堂三楼">南食堂三楼</option>
+          <option value="北食堂一楼">北食堂一楼</option>
+          <option value="北食堂二楼">北食堂二楼</option>
+          <option value="北食堂三楼">北食堂三楼</option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">美食标签</label>
+      <div class="layui-input-inline">
+        <select name="genres" lay-verify="required">
+          <option value="">请选择标签</option>
+          <option value="凉菜">凉菜</option>
+          <option value="炒菜">炒菜</option>
+          <option value="蒸菜">蒸菜</option>
+          <option value="烧烤">烧菜</option>
+          <option value="汤菜">汤菜</option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">菜系</label>
+      <div class="layui-input-block">
+        <input type="checkbox" name="type" value="Sichuan" title="川菜">
+        <input type="checkbox" name="type" value="Anhui" title="徽菜" checked="">
+        <input type="checkbox" name="type" value="Shandong" title="鲁菜">
+        <input type="checkbox" name="type" value="Guangdong" title="粤菜">
+        <input type="checkbox" name="type" value="Fujian" title="闽菜">
+        <input type="checkbox" name="type" value="Jiangsu" title="苏菜">
+        <input type="checkbox" name="type" value="Zhejiang"  title="浙菜">
+        <input type="checkbox" name="type" value="Hunan" title="湘菜">
+      </div>
+    </div>
+
+    <div class="layui-form-item layui-hide">
+      <input type="button" lay-submit lay-filter="layuiadmin-app-form-submit" id="layuiadmin-app-form-submit" value="确认添加">
+      <input type="button" lay-submit lay-filter="layuiadmin-app-form-edit" id="layuiadmin-app-form-edit" value="确认编辑">
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../../js/vue.js"></script>
+  <script type="text/javascript" src="../../../js/jquery.js"></script>
+<!--  <script type="text/javascript" src="../../../layuiadmin/modules/contlist.js"></script>-->
+  <!--  <script type="text/javascript" src="../../../js/jquery.min.js"></script>-->
+  <script type="text/javascript" src="../../../js/axios.min.js"></script>
+  <script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+  <script type="text/javascript" src="../../../js/vue-resource.min.js"></script>
+  <script>
+  layui.config({
+    base: '../../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form','upload'], function(){
+    var $ = layui.$
+    ,form = layui.form
+    ,upload = layui.upload ;
+
+    upload.render({
+      elem: '#layuiadmin-upload-useradmin'
+      ,url: '/users/upload'
+      ,accept: 'images'
+      ,method: 'get'
+      ,acceptMime: 'image/*'
+      ,done: function(res){
+        $(this.item).prev("div").children("input").val(res.data.src)
+      }
+    });
+
+  function GetQueryString(name)
+    {
+      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if(r!=null)return  unescape(r[2]); return null;
+    }
+    //监听提交
+    form.on('submit(layuiadmin-app-form-submit)', function(data){
+      var field = data.field; //获取提交的字段
+      console.log(field);
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+      // var path = document.getElementById("portrait").value;
+      // var gen = $("input[name='gender']:checked").val();
+      // var can = $("input[name='canteen']:checked").val();
+      //提交 Ajax 成功后，关闭当前弹层并重载表格
+      var types = $("input[name='type']:checked").map(function () {
+        return $(this).val();
+      }).get().join('|');
+      $.ajax({
+        type: 'post'
+        ,url: '/foods/save'
+        ,dataType: 'json'
+        ,data: {
+          name:field.name,
+          describe: field.describe,
+          avatar: field.avatar,
+          genres: field.genres,
+          price: field.price,
+          types: types,
+          canteen:field.canteen
+        }
+        ,success: function (result) {
+          window.location.reload();
+        },
+        error : function (e) {
+          console.log(e.state);
+          console.log(e.responseText)
+        }
+      });
+      parent.layui.table.reload('LAY-app-content-list'); //重载表格
+      parent.layer.close(index); //再执行关闭
+    });
+
+    form.on('submit(layuiadmin-app-form-edit)', function(data){
+      var field = data.field; //获取提交的字段
+      console.log(field);
+      var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+      // var path = document.getElementById("portrait").value;
+      // var gen = $("input[name='gender']:checked").val();
+      // var can = $("input[name='canteen']:checked").val();
+      //提交 Ajax 成功后，关闭当前弹层并重载表格
+      $.ajax({
+          type: 'post'
+          ,url: '/foods/update'
+          ,dataType: 'json'
+          ,data: {
+            fid: GetQueryString("fid"),
+            name:field.name,
+            describe: field.describe,
+            avatar: field.avatar,
+            genres: field.genres,
+            canteen:field.canteen
+          }
+          ,success: function (result) {
+            window.location.reload();
+          },
+          error : function (e) {
+            console.log(e.state);
+            console.log(e.responseText)
+          }
+      });
+      parent.layui.table.reload('LAY-app-content-list'); //重载表格
+      parent.layer.close(index); //再执行关闭
+    });
+  })
+  </script>
+</body>
+</html>
